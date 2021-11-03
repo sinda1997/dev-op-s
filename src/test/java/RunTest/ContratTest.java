@@ -23,8 +23,8 @@ public class ContratTest {
 	
     private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
 
-    @Test
-    public void ajouterContrat() {
+   // @Test
+   /* public void ajouterContrat() {
         l.info("debut ajouterEntrepriseTest");
         int nbEmps = employeService.getNombreEmployeJPQL();
         l.info("Nombre employes: "+nbEmps);
@@ -43,6 +43,6 @@ public class ContratTest {
         Assert.assertEquals(Role.INGENIEUR, e.getRole());
         employeService.deleteEmployeById(idEmp);
         l.info("fin ajouterEmployeTest");
-    }
+    }*/
 
 }

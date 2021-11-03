@@ -19,9 +19,9 @@ public class ContratServiceImpl implements IContratService{
 		contratRepository.save(contrat);
 		return contrat.getReference();
 	}
-	public int getNombreContratJPQL() {
+	/*public int getNombreContratJPQL() {
 		return contratRepository.countcontrat();
-	}
+	}*/
 
 	public void affecterContratAEmploye(int contratId, int employeId) {
 		Contrat contratManagedEntity = contratRepository.findById(contratId).get();
