@@ -14,18 +14,18 @@ import tn.esprit.spring.services.IContratService;
 @RestController
 public class RestControlContrat {
 	@Autowired
-	IContratService icontratService;
+	IContratService contratService;
 
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
 	public Contrat ajouterContrat(@RequestBody Contrat contrat) {
-		icontratService.ajouterContrat(contrat);
+		contratService.ajouterContrat(contrat);
 		return contrat;
 	}
 	@DeleteMapping("/deleteContratById/{idcontrat}") 
 	@ResponseBody
 	public void deleteContratById(@PathVariable("idcontrat")int contratId) {
-		icontratService.deleteContratById(contratId);
+		contratService.deleteContratById(contratId);
 	}
 
 }
