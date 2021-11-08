@@ -8,22 +8,22 @@ pipeline{
             steps{
                 git 'https://github.com/sinda1997/dev-op-s.git'
             }
-            }
-            stage('SonarQube analysis') {
+         } 
+         stage('SonarQube analysis') {
        steps{
         withSonarQubeEnv('SonarQube') { 
        bat "mvn sonar:sonar"
     }
       }
-   }
-                 stage('Build Maven') {
+      }
+      stage('Build Maven') {
             steps{
               git branch: 'main', credentialsId: 'token_nexus', url: 'https://github.com/sinda1997/dev-op-s.git'
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 
             }
             post {
-    	  success {
+            success {
                junit '**/target/surefire-reports/TEST-*.xml'
             }
          }
@@ -95,8 +95,14 @@ pipeline{
                 }
 
             }
-            }
-            }
-            }
 
-        }    
+        }
+
+        
+ 
+ 
+ 
+    }
+    
+          
+}
