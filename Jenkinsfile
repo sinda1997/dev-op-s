@@ -50,7 +50,7 @@ pipeline{
 
                             nexusUrl: 'localhost:8081/',
 
-                            groupId: 'pom.com.tn.esprit.spring',
+                            groupId: 'pom.tn.esprit.spring',
 
                             version: 'pom.1.0',
 
