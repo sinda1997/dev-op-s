@@ -3,6 +3,7 @@ package tn.esprit.spring.test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertNull;
+//import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNull;
 
 import java.text.ParseException;
@@ -20,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.entities.Employe;
 //import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.EmployeRepository;
@@ -30,9 +32,9 @@ import tn.esprit.spring.services.EmployeServiceImpl;
 @SpringBootTest()
 public class ContratTest {
 	@Autowired
-	ContratRepository contratRepoistory;
+	ContratRepository contratRepository;
 	@Autowired
-	EmployeRepository employeRepoistory;
+	EmployeRepository employeRepository;
 	@Autowired
 	EmployeServiceImpl employeServiceImpl;
 	@Autowired
@@ -44,46 +46,45 @@ public class ContratTest {
 	@Test
 	public void TestAjouterContrat() throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date d = dateFormat.parse("2022-10-07"); //date contrat 07 october 2021
-		Contrat contrat = new Contrat(d, "CDD", 3200); //type de contrat cdd et salaire 500
+		Date d = dateFormat.parse("2022-10-07"); //date contrat 07 October 2021
+		Contrat contrat = new Contrat(d, "CDD", 500); //type de contrat cdd et salaire 500
 		int idcontrat = employeServiceImpl.ajouterContrat(contrat);
 
-		assertEquals(37, idcontrat);
+		assertEquals(1, idcontrat);
 	}
 
-	/*@Test
+	@Test
 	public void testAffecterContratAEmployet() {
 
-		employeServiceImpl.affecterContratAEmploye(37, 1); //contrat id = 2, employe id= 5
-		Employe employe = employeRepoistory.findById(1).get(); 
+		employeServiceImpl.affecterContratAEmploye(1,1);
+		Employe employe = employeRepository.findById(1).get(); 
 		int idContrat = employe.getContrat().getReference();
 		assertEquals(1, idContrat);
 
-	}*/
+	}
 	
 
-	@Test
+	/*@Test
 	public void TestDeleteContratById() {
-		Contrat contrat = contratRepoistory.findById(37).get();
+		Contrat contrat = contratRepository.findById(1).orElse(null);
 		
 		
 		if(contrat.getReference()!=0) {
 	    	
 			employeServiceImpl.deleteContratById(3);
-			assertThat(employeRepoistory.existsById(1)).isFalse();//confirm that employe has beeen deleted
+			assertThat(employeRepository.existsById(1)).isFalse();//confirm that employe has beeen deleted
 	    	 }
 	    	 else {
 	    		 assertNull(contrat);
 	    	 }
 	
-	}
-
+	}*/
 	
 
 	@Test
 	public void TestdeleteAllContratJPQL() {
 		employeServiceImpl.deleteAllContratJPQL();
-		List<Contrat> contrat = (List<Contrat>) contratRepoistory.findAll();
+		List<Contrat> contrat = (List<Contrat>) contratRepository.findAll();
 		assertEquals(0, contrat.size());
 	}
 	/*@Test
