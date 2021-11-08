@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/sabrine924/ProjetDevOps.git'
+                git 'https://github.com/sinda1997/dev-op-s.git'
             }
          }        
      //  stage('Build'){
