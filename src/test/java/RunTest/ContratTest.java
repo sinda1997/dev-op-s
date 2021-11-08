@@ -1,4 +1,4 @@
-package RunTest;
+/*package RunTest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,4 +45,4 @@ public class ContratTest {
         l.info("fin ajouterEmployeTest");
     }*/
 
-}
+//}
