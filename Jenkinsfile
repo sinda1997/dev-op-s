@@ -8,9 +8,6 @@ pipeline{
             steps{
                 git 'https://github.com/sinda1997/dev-op-s.git'
             }
-         } 
-         
-    stages{
     	stage('Scan') {
     		steps {
     			WithSonarQubeEnv(installationName: 'sql') {
