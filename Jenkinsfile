@@ -14,7 +14,7 @@ pipeline{
     	stage('Scan') {
     		steps {
     			WithSonarQubeEnv(installationName: 'sql') {
-    				sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:9.9.0.2155:sonar'
+    				sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
     				}
     				}
     				}
