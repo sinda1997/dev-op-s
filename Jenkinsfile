@@ -10,7 +10,7 @@ pipeline{
             }
          } 
          
-    stages {
+    stages{
     	stage('Scan') {
     		steps {
     			WithSonarQubeEnv(installationName: 'sql') {
