@@ -8,23 +8,104 @@ pipeline{
             steps{
                 git 'https://github.com/sinda1997/dev-op-s.git'
             }
-         }        
-     //  stage('Build'){
-     //       steps{
-      //          sh 'mvn clean package'
-         //   }
-      //   }
-     //   stage('SonarQube analysis') {
-  //  def scannerHome = tool 'SonarQube';
-   //     steps{
-   //     withSonarQubeEnv('SonarQube') { 
-        // If you have configured more than one global server connection, you can specify its name
-   //   sh "${scannerHome}/bin/sonar-scanner"
- //       sh "mvn sonar:sonar"
- //   }
-  //      }
-   //     }
+         } 
+         stage('SonarQube analysis') {
+       steps{
+        withSonarQubeEnv('SonarQube') { 
+       bat "mvn sonar:sonar"
+    }
+      }
+      }
+      stage('Build Maven') {
+            steps{
+              git branch: 'main', credentialsId: 'token_nexus', url: 'https://github.com/sinda1997/dev-op-s.git'
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                
+            }
+            
+            stage("Publish to Nexus Repository Manager") {
+
+            steps {
+
+                script {
+
+                    pom = readMavenPom file: "pom.xml";
+
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+
+                    artifactPath = filesByGlob[0].path;
+
+                    artifactExists = fileExists artifactPath;
+
+                    if(artifactExists) {
+
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+
+                        nexusArtifactUploader(
+                            nexusVersion: 'nexus3',
+                            
+                            protocol: 'http',
+
+                            nexusUrl: 'localhost:8081/',
+
+                            groupId: 'pom.com.tn.esprit.spring',
+
+                            version: 'pom.1.0',
+
+                            repository: 'repository/maven-central-repository',
+
+                            credentialsId: 'NEXUS_CRED',
+
+                            artifacts: [
+
+                                [artifactId: 'pom.Timesheet-spring-boot-core-data-jpa-mvc-REST-1',
+
+                                classifier: '',
+
+                                file: artifactPath,
+
+                                type: pom.packaging],
+
+                                [artifactId: 'pom.Timesheet-spring-boot-core-data-jpa-mvc-REST-1',
+
+                                classifier: '',
+
+                                file: "pom.xml",
+
+                                type: "pom"]
+
+                            ]
+
+                        );
+
+                    } else {
+
+                        error "*** File: ${artifactPath}, could not be found";
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        
+ 
+ 
  
     }
-    
+    post {
+          always {  
+             mail bcc: '', body: "Result : ${currentBuild.currentResult}<br> JOB : ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL} <br> ", cc: '', charset: 'UTF-8', from: 'Jenkins@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}  ", 
+             to: "sinda.jouini@esprit.tn" 
+         }
+      
+     }
+     
+     
+        }
+          
 }
