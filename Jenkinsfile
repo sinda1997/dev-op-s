@@ -18,7 +18,7 @@ pipeline{
       }
       stage('Build Maven') {
             steps{
-              git branch: 'master', credentialsId: 'token_nexus', url: 'https://github.com/sinda1997/dev-op-s.git'
+              git branch: 'master', credentialsId: 'jenkins-sonar', url: 'https://github.com/sinda1997/dev-op-s.git'
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 
             }
