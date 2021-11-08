@@ -1,12 +1,15 @@
 package tn.esprit.spring.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Contrat;
-import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.EmployeRepository;
 
+@Service
 public class ContratServiceImpl implements IContratService{
 	
 	@Autowired
@@ -19,31 +22,25 @@ public class ContratServiceImpl implements IContratService{
 		contratRepository.save(contrat);
 		return contrat.getReference();
 	}
-	/*public int getNombreContratJPQL() {
-		return contratRepository.countcontrat();
-	}*/
 
-	public void affecterContratAEmploye(int contratId, int employeId) {
-		Contrat contratManagedEntity = contratRepository.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-
-		contratManagedEntity.setEmploye(employeManagedEntity);
-		contratRepository.save(contratManagedEntity);
-		
-	}
 
 	@Override
 	public void deleteContratById(int contratId) {
-		Contrat contratManagedEntity = contratRepository.findById(contratId).get();
+		Contrat contratManagedEntity = contratRepository.findById(contratId).orElse(null);
 		contratRepository.delete(contratManagedEntity);
 
 	}
 
 
 	@Override
-	public void deleteAllContratJPQL() {
-		// TODO Auto-generated method stub
-		
+	public Contrat getContratById(int contratId) {
+		return contratRepository.findById((int) contratId).orElse(null);
+	}
+
+
+	@Override
+	public List<Contrat> getAllContrats() {
+		return (List<Contrat>) contratRepository.findAll();
 	}
 
 }
