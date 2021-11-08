@@ -22,6 +22,12 @@ pipeline{
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 
             }
+            post {
+            success {
+               junit '**/target/surefire-reports/TEST-*.xml'
+            }
+         }
+        }  
             
             stage("Publish to Nexus Repository Manager") {
 
@@ -104,8 +110,5 @@ pipeline{
          }
       
      }
-     
-     
-        }
           
 }
