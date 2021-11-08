@@ -53,7 +53,7 @@ public class ContratTest {
 		assertEquals(1, idcontrat);
 	}
 
-	@Test
+	/*@Test
 	public void testAffecterContratAEmployet() {
 
 		employeServiceImpl.affecterContratAEmploye(1,1);
@@ -61,7 +61,7 @@ public class ContratTest {
 		int idContrat = employe.getContrat().getReference();
 		assertEquals(1, idContrat);
 
-	}
+	}*/
 	
 
 	/*@Test
