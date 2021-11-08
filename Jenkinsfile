@@ -103,12 +103,6 @@ pipeline{
  
  
     }
-    post {
-          always {  
-             mail bcc: '', body: "Result : ${currentBuild.currentResult}<br> JOB : ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL} <br> ", cc: '', charset: 'UTF-8', from: 'Jenkins@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}  ", 
-             to: "sinda.jouini@esprit.tn" 
-         }
-      
-     }
+    
           
 }
