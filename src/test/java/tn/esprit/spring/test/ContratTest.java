@@ -53,18 +53,18 @@ public class ContratTest {
 		assertEquals(1, idcontrat);
 	}
 
-	/*@Test
+	@Test
 	public void testAffecterContratAEmployet() {
 
 		employeServiceImpl.affecterContratAEmploye(1,1);
-		Employe employe = employeRepository.findById(1).get(); 
+		Employe employe = employeRepository.findById(1).orElse(null); 
 		int idContrat = employe.getContrat().getReference();
 		assertEquals(1, idContrat);
 
-	}*/
+	}
 	
 
-	/*@Test
+	@Test
 	public void TestDeleteContratById() {
 		Contrat contrat = contratRepository.findById(1).orElse(null);
 		
@@ -78,28 +78,28 @@ public class ContratTest {
 	    		 assertNull(contrat);
 	    	 }
 	
-	}*/
+	}
 	
 
 	@Test
-	public void TestdeleteAllContratJPQL() {
+	public void TestdeleteAllContrat() {
 		employeServiceImpl.deleteAllContratJPQL();
 		List<Contrat> contrat = (List<Contrat>) contratRepository.findAll();
 		assertEquals(0, contrat.size());
 	}
-	/*@Test
+	@Test
 	public void tesUpdateContrat() {
 		Contrat contrat = contratservice.getContratById(7);
 		contrat.setSalaire(3600);
 		int contratId = employeServiceImpl.ajouterContrat(contrat);
 		Contrat updatedcontrat = contratservice.getContratById(contratId);
 		assertThat(updatedcontrat.getSalaire()).isEqualTo(contrat.getSalaire());
-	}*/
-	/*@Test
+	}
+	@Test
 	public void testFindContratById() {
 		Contrat contrat = contratservice.getContratById(7);
 		assertThat(contrat.getReference()).isEqualTo(7);
-	}*/
+	}
 	@Test
 	public void testGetListContrats() {
 		ArrayList<Contrat> entreprises = (ArrayList<Contrat>) contratservice.getAllContrats();
