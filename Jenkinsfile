@@ -10,7 +10,7 @@ pipeline {
 				}
 }
 
-		stage("Test, Build, Sonar) {
+		stage("Test, Build, Sonar") {
 		steps {
 		
 				bat "mvn package sonar:sonar"
