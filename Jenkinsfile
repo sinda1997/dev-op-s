@@ -15,6 +15,7 @@ pipeline {
 	 stage('SonarQube analysis') {
        steps{
         withSonarQubeEnv('SonarQube') { 
+        bat "mvn -Dmaven.test.failure.ignore=true clean install" 
        bat "mvn sonar:sonar"
     }
       }
