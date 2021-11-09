@@ -1,7 +1,7 @@
 pipeline {
 		agent any
     environment {
-       PATH = "$PATH:C:\Users\jouin\Downloads\Nouveau dossier (7)\apache-maven-3.8.1\bin"
+       PATH = "$PATH:C:/Users/jouin/Downloads/Nouveau dossier (7)/apache-maven-3.8.1/bin"
     
        
     }
