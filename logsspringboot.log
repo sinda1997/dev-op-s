@@ -413,3 +413,4 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2021-11-09 10:38:12.474  INFO 25548 --- [Thread-2] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-11-09 10:38:12.479  INFO 25548 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-11-09 10:38:12.507  INFO 25548 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-09 12:29:09.265  WARN 12356 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h4m44s918ms975µs300ns).

@@ -94,6 +94,27 @@ pipeline {
 
             }
             }
+            stage('Build Docker Image') {
 
+			steps {
+				bat 'docker build -t saidali12/timesheet:latest .'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+			    bat'docker login -u "sinda25" -p "sinda1997" docker.io '
+			    bat 'docker push sinda25/timesheet:latest'
+			}
+			
+		}
+		stage('Cleaning up'){
+			steps{
+			    bat'docker login -u "sinda25" -p "sinda1997" docker.io '
+				bat "docker rmi sinda25/timesheet:latest" 
+			}
+		}
         }
+        
         }
