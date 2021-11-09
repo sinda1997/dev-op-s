@@ -26,14 +26,6 @@ pipeline {
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 
             }
-            post {
-            success {
-          
-               jacoco classPattern: "**/classes", sourcePattern: "**/src/main/java"
-               
-
-            }
-         }
         }  
         stage("Publish to Nexus Repository Manager") {
 
