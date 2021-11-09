@@ -97,7 +97,7 @@ pipeline {
             stage('Build Docker Image') {
 
 			steps {
-				bat 'docker build -t saidali12/timesheet:latest .'
+				bat 'docker build -t sinda25/timesheet:latest .'
 			}
 		}
 
