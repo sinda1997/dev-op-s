@@ -5,6 +5,10 @@ pipeline {
     
        
     }
+    tools
+    {
+    	maven "MAVEN_HOME"
+    }
 	 stages{
        stage('GetCode'){
             steps{
@@ -12,7 +16,16 @@ pipeline {
 				
 				}
 }
-
+		stage('build') {
+			steps {
+				// run maven on windows agent, use 
+				bat "mvn -Dmaven.test.failure.ignore=true clean package"
+				}
+		post {
+			success {
+				junit '**/target/surefire-reports/TEST-*.xml'
+				archiveArtifacts 'target/*.jar'
+				}
 		//stage('SonarQube') {
        //steps{
         //withSonarQubeEnv('SonarQube') { 
