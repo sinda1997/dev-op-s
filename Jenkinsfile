@@ -1,19 +1,17 @@
 pipeline {
 		agent any
     environment {
-       PATH = "$PATH:C:/Users/user/Desktop/apache-maven-3.8.1/bin"
+       PATH = "$PATH:C:\Users\jouin\Downloads\Nouveau dossier (7)\apache-maven-3.8.1\bin"
     
        
     }
 	stages{
-		stage('checkout GIT') {
-		steps {
-				
-				echo 'Pulling...';
-				git branch: 'master', url: 'https://github.com/sinda1997/dev-op-s.git'
-				
-				}
-}
+	
+	stage('GetCode'){
+            steps{
+                git 'https://github.com/sinda1997/dev-op-s.git'
+            }
+         }
 	stage('SonarQube analysis') {
        steps{
        withSonarQubeEnv('SonarQube') { 
