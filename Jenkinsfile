@@ -12,12 +12,13 @@ pipeline {
                 git 'https://github.com/sinda1997/dev-op-s.git'
             }
          }
-	stage('SonarQube analysis') {
+	 stage('SonarQube analysis') {
        steps{
-       withSonarQubeEnv('SonarQube') { 
+        withSonarQubeEnv('SonarQube') { 
        bat "mvn sonar:sonar"
     }
-     }
+      }
+   }
    stage('Build Maven') {
             steps{
               git branch: 'master', credentialsId: 'NEXUS_CRED', url: 'https://github.com/sinda1997/dev-op-s.git'
