@@ -95,28 +95,6 @@ pipeline {
             }
 
         }
-
-        
-      stage('Build Docker Image') {
-
-			steps {
-				bat 'docker build -t softwaredeveloper98/timesheet-spring-boot-core-data-jpa-mvc-rest-1:latest .'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-			    bat'docker login -u "softwaredeveloper98" -p "sabrine" docker.io '
-			    bat 'docker push softwaredeveloper98/timesheet-spring-boot-core-data-jpa-mvc-rest-1:latest'
-			}
-			
-		}
-		stage('Cleaning up'){
-			steps{
-				bat "docker rmi softwaredeveloper98/timesheet-spring-boot-core-data-jpa-mvc-rest-1:latest" 
-			}
-		}
      
      
  
